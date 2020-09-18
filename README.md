@@ -23,9 +23,9 @@
 | Column        | Type       | Options                       |
 | ------------- | ---------- | ----------------------------- |
 | name          | string     | null: false                   |
-| explanation   | string     | null: false                   |
+| explanation   | text       | null: false                   |
 | category      | integer    | null: false                   |
-| condition     | string     | null: false                   |
+| condition     | integer    | null: false                   |
 | pay_id        | integer    | null: false                   |
 | area_id       | integer    | null: false                   |
 | days_id       | integer    | null: false                   |
@@ -49,8 +49,7 @@
 | purchase_history   | references | null: false,foreign_key: true |
 
 ### Association
-- belongs_to :item
-- has_one :purchase_history
+- belongs_to :purchase_history
 
 ## purchase_histories テーブル
 
