@@ -16,7 +16,6 @@
 ### Association
 
 - has_many :items
-- has_many :addresses
 - has_many :purchase_histories
 
 ## items テーブル
@@ -47,11 +46,11 @@
 | address            | string     | null: false                    |
 | building_name      | string     |                                |
 | phone_number       | string     | null: false                    |
-| purchase_histories | references | null: false,foreign_key: true |
+| purchase_history   | references | null: false,foreign_key: true |
 
 ### Association
 - belongs_to :item
-- has_one :purchase_histories
+- has_one :purchase_history
 
 ## purchase_histories テーブル
 
