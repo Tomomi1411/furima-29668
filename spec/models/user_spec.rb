@@ -40,5 +40,47 @@ RSpec.describe User, type: :model do
       another_user.valid?
      expect(another_user.errors.full_messages).to include("Email has already been taken")
     end
+
+    it "surnameが必須であること" do
+      @user.surname = ""
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Surname can't be blank")
+    end
+
+    it "surnameが全角であること" do
+      @user.surname = ""
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Surname can't be blank", "Surname is invalid. Input full-width characters.")
+    end
+
+    it "name_kanaが必須であること" do
+      @user.name_kana = ""
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Name kana can't be blank")
+    end
+
+    it "surname_kanaが必須であること" do
+      @user.surname_kana = ""
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Surname kana can't be blank")
+    end
+
+    it "name_kanaが全角であること" do
+      @user.name_kana = ""
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Name kana can't be blank", "Name kana is invalid. Input full-width katakana characters.")
+    end
+
+    it "surname_kanaが全角であること" do
+      @user.surname_kana = ""
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Surname kana can't be blank", "Surname kana is invalid. Input full-width katakana characters.")
+    end
+
+    it "birthが必須であること" do
+      @user.birth = ""
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Birth can't be blank")
+    end
   end
 end
