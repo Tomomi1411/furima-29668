@@ -11,10 +11,13 @@ class Item < ApplicationRecord
     validates :explanation
   end
 
-  validates :category_id, numericality: { other_than: 1 } 
-  validates :condition_id, numericality: { other_than: 1 } 
-  validates :pay_id, numericality: { other_than: 1 } 
-  validates :area_id, numericality: { other_than: 1 } 
-  validates :days_id, numericality: { other_than: 1 } 
+  with_options numericality: { other_than: 1 }  do
+   validates :category_id 
+   validates :condition_id
+   validates :pay_id
+   validates :area_id
+   validates :days_id
+  end
+  
   validates :price, numericality: {with: /\A[0-9]+\z/}, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 } 
 end

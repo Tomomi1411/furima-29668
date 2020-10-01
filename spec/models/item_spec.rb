@@ -28,6 +28,12 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Category is not a number")
     end
 
+    it"category_idは1では登録できないこと" do
+      @item.category_id = '1'
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Category must be other than 1")
+  end
+
     it "conditionが空では登録できないこと" do
         @item.name = ''
         @item.valid?
@@ -47,15 +53,15 @@ RSpec.describe Item, type: :model do
     end
 
     it "priceが300円未満だと登録できないこと" do
-        @item.price = "300"
+        @item.price = "299"
         @item.valid?
-        expect(@item).to be_valid
+        expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
     end
 
     it "priceが9,999,999円を超えると登録できないこと" do
-       @item.price = "9999999"
+       @item.price = "10000000"
        @item.valid?
-       expect(@item).to be_valid
+       expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
     end
 
     it "priceが半角数字であること" do
