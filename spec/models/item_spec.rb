@@ -64,6 +64,24 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Area is not a number")
     end
 
+    it"area_idは1では登録できないこと" do
+      @item.area_id = '1'
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Area must be other than 1")
+    end
+
+    it "days_idが空では登録できないこと" do
+      @item.days_id = ''
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Days is not a number")
+    end
+
+    it "days_idは1では登録できないこと" do
+      @item.days_id = '1'
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Days must be other than 1")
+    end
+
     it "priceが300円未満だと登録できないこと" do
         @item.price = "299"
         @item.valid?
