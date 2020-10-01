@@ -32,18 +32,30 @@ RSpec.describe Item, type: :model do
       @item.category_id = '1'
       @item.valid?
       expect(@item.errors.full_messages).to include("Category must be other than 1")
-  end
+    end
 
-    it "conditionが空では登録できないこと" do
+    it "condition_idが空では登録できないこと" do
         @item.name = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Name can't be blank")
+    end
+
+    it"condition_idは1では登録できないこと" do
+      @item.condition_id = '1'
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Condition must be other than 1")
     end
 
     it "pay_idが空では登録できないこと" do
         @item.name = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Name can't be blank")
+    end
+
+    it"pay_idは1では登録できないこと" do
+      @item.pay_id = '1'
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Pay must be other than 1")
     end
 
     it "area_idが空では登録できないこと" do
