@@ -1,11 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: {
-    registrations: 'users/registrations',
-  }
-  devise_scope :user do
-    get 'sending_destinations', to: 'users/registrations#newSendingDestination'
-    post 'sending_destinations', to: 'users/registrations#createSendingDestination'
-  end
+  devise_for :users
   root "items#index"
 
   resources :items
@@ -16,3 +10,11 @@ Rails.application.routes.draw do
   #   end
   # end
 end
+
+# , controllers: {
+#   registrations: 'users/registrations',
+# }
+# devise_scope :user do
+#   get 'sending_destinations', to: 'users/registrations#newSendingDestination'
+#   post 'sending_destinations', to: 'users/registrations#createSendingDestination'
+# end
