@@ -70,14 +70,14 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("Area must be other than 1")
     end
 
-    it "days_idが空では登録できないこと" do
-      @item.days_id = ''
+    it "day_idが空では登録できないこと" do
+      @item.day_id = ''
       @item.valid?
       expect(@item.errors.full_messages).to include("Days is not a number")
     end
 
-    it "days_idは1では登録できないこと" do
-      @item.days_id = '1'
+    it "day_idは1では登録できないこと" do
+      @item.day_id = '1'
       @item.valid?
       expect(@item.errors.full_messages).to include("Days must be other than 1")
     end
