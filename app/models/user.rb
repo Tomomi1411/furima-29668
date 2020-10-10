@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :items
-  has_many :purchase_histories
+  has_many :orders
 
  REGIX = /\A[a-z0-9]+\z/i
  NAMEREGIX = /\A[ぁ-んァ-ン一-龥]/
