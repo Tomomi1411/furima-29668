@@ -19,10 +19,22 @@ RSpec.describe OrderAddress, type: :model do
         expect(@orderaddress.errors.full_messages).to include("Postal code can't be blank")
     end
 
-    it "prefecture_idが空では登録できないこと" do
-        @orderaddress.prefecture_id = ''
+    it "postal_codeにはハイフンが必要であること" do
+      @orderaddress.postal_code = ''
+      @orderaddress.valid?
+      expect(@orderaddress.errors.full_messages).to include("Postal code can't be blank")
+    end
+
+    it "prefecture_idは1では登録できないこと" do
+        @orderaddress.prefecture_id = '1'
         @orderaddress.valid?
-        expect(@orderaddress.errors.full_messages).to include("Prefecture can't be blank")
+        expect(@orderaddress.errors.full_messages).to include("Prefecture must be other than 1")
+    end
+
+    it "prefecture_idが空では登録できないこと" do
+      @orderaddress.prefecture_id = ''
+      @orderaddress.valid?
+      expect(@orderaddress.errors.full_messages).to include("Prefecture can't be blank")
     end
 
     it"municipalityが空では登録できないこと" do
