@@ -49,10 +49,22 @@ RSpec.describe OrderAddress, type: :model do
       expect(@orderaddress.errors.full_messages).to include("Address can't be blank")
     end
 
+    it"building_nameが空でも登録できること" do
+      @orderaddress.building_name = ''
+      @orderaddress.valid?
+      # expect(@orderaddress).to be_valid
+    end
+
     it"phone_numberが空では登録できないこと" do
       @orderaddress.phone_number = ''
       @orderaddress.valid?
       expect(@orderaddress.errors.full_messages).to include("Phone number can't be blank")
+    end
+
+    it"phone_numberは11桁以内でないと登録できないこと" do
+      @orderaddress.phone_number = '000000000000'
+      @orderaddress.valid?
+      expect(@orderaddress.errors.full_messages).to include("Phone number is invalid")
     end
   end
 end
