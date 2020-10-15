@@ -132,6 +132,7 @@
         <%= link_to item_path(item) do %>
         <div class='item-img-content'>
           <%= image_tag item.image, class: "item-img" %>
+          <%= item.updated_at.strftime("%Y-%m-%d %H:%M") %>
 
           <%# 商品が売れていればsold outを表示しましょう %>
           <% if item.order&.persisted? %> 
